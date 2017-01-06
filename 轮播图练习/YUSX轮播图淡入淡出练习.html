@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>YUSX淡入淡出练习</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        img{
+            border: 0px;
+        }
+        #container{
+            width: 752px;
+            height: 640px;
+            margin: 100px auto;
+            position: relative;
+        }
+        #imgs img{
+            width: 752px;
+            height: 640px;
+            position: absolute;
+        }
+        #tab{
+            list-style: none;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            z-index: 99999;
+        }
+        #tab li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            color: #ffffff;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+
+        }
+        #arrows{
+            list-style: none;
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            z-index: 99999;
+        }
+        #arrows span{
+            width: 20px;
+            height: 20px;
+            background: black;
+            color: #ffffff;
+            float: left;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+
+        }
+        #tab .selected{
+            background: orange;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imgs">
+            <img src="img/1.JPG" style="z-index: 4"/>
+            <img src="img/2.JPG" style="z-index: 3"/>
+            <img src="img/3.JPG" style="z-index: 2"/>
+            <img src="img/4.JPG" style="z-index: 1"/>
+        </div>
+        <ul id="tab">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <span id="arrows">
+            <span id="pver">&lt;</span>
+            <span id="next">&gt;</span>
+        </span>
+    </div>
+    <script src="jslib.js"></script>
+    <script>
+        var oTab = document.getElementById('tab');
+        var aLi = oTab.getElementsByTagName('li');
+        var oImgs = document.getElementById('imgs');
+        var aImg = oImgs.getElementsByTagName('img');
+        var oPver = document.getElementById('pver');
+        var oNext = document.getElementById('next');
+        var oContainer = document.getElementById('container');
+        var zIndex = 4;
+        var iNow = 0;
+        var timer;
+        for(var i = 0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function() {
+                iNow=this.index;
+
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].className = '';
+                }
+                this.className = 'selected';
+
+                //将图片透明度改为0
+                aImg[this.index].style.opacity = 0;
+                aImg[this.index].style.filter = "alpha(opacity=0)";
+                //调整层级
+                aImg[this.index].style.zIndex = ++zIndex;
+                //动画的方式把透明度变到1
+                animate(aImg[this.index], {
+                    opacity: 100
+                });
+            }
+
+        }
+        oPver.onclick = oNext.onclick = function(){
+            if(this == oNext){
+                iNow++;
+                if(iNow == aImg.length){
+                    iNow = 0;
+                }
+            }else
+            {
+                iNow--;
+                if(iNow == -1){
+                    iNow = aImg.length-1;
+                }
+            }
+            aLi[iNow].onmouseover();
+
+        }
+        play();
+                    oContainer.onmouseover= function(){
+                        clearInterval(timer);
+                    };
+                    oContainer.onmouseout = function(){
+                        play();
+                    }
+        function play(){
+            timer = setInterval(function(){
+                oNext.onclick();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
