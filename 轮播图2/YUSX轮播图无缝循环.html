@@ -136,8 +136,7 @@
                 aLi[i].className = "";
             }
             //li是4个,img是5个，所以需要判断li的下标是否越界
-            aLi[iNow==aLi.length?0:iNow].className = "selected";
-
+            aLi[iNow==aLi.length?0:iNow].className = "selected"
             //图片做动画轮播
             animate(oImgs, {
                 left : -iNow * imgWidth
