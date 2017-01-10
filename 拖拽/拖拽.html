@@ -24,7 +24,7 @@
              cursor: pointer;
              position: absolute;
              left: 0;
-             top: 200px;
+             top: 50px;
          }
         #drag3{
               width: 200px;
@@ -33,7 +33,7 @@
               cursor: pointer;
               position: absolute;
               left: 0;
-              top: 400px;
+              top: 100px;
           }
     </style>
 </head>
@@ -48,13 +48,12 @@
         tuozhuai(oDrag1);
         tuozhuai(oDrag2);
         tuozhuai(oDrag3);
-
         function tuozhuai(elem){
             elem.onmousedown = function(e){
                 //解决事件对象e的兼容性问题
                 e = e || window.event;
-                //求出鼠标和elem的距离
-                var iDisX = e.client  X - elem.offsetLeft;
+                //求出鼠标和drag的距离
+                var iDisX = e.clientX - elem.offsetLeft;
                 var iDisY = e.clientY - elem.offsetTop;
 
                 //鼠标拖动的时候不断改变drag的位置

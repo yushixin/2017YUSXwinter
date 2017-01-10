@@ -74,21 +74,21 @@
             </li>
         </ul>
         <h1>hehe</h1>
-        <!--<script>-->
-            <!--var oMenu = document.getElementById('menu');-->
-            <!--var aLi = oMenu.getElementsByTagName('li');-->
-            <!--for(var i = 0;i< aLi.length;i++) {-->
-                <!--if(aLi[i].className == 'main-menu') {-->
-                    <!--aLi[i].onmouseover = function() {-->
-                        <!--var oSubMenu = this.getElementsByTagName('ul')[0];-->
-                        <!--oSubMenu.style.display = 'block';-->
-                    <!--};-->
-                    <!--aLi[i].onmouseout = function () {-->
-                        <!--var oSubMenu = this.getElementsByTagName('ul')[0];//[ul]-->
-                        <!--oSubMenu.style.display = 'none';-->
-                    <!--};-->
-                <!--}-->
-            <!--}-->
-        <!--</script>-->
+        <script>
+            var oMenu = document.getElementById('menu');
+            var aLi = oMenu.getElementsByTagName('li');
+            for(var i = 0;i< aLi.length;i++) {
+                if(aLi[i].className == 'main-menu') {
+                    aLi[i].onmouseover = function() {
+                        var oSubMenu = this.getElementsByTagName('ul')[0];
+                        oSubMenu.style.display = 'block';
+                    };
+                    aLi[i].onmouseout = function () {
+                        var oSubMenu = this.getElementsByTagName('ul')[0];//[ul]
+                        oSubMenu.style.display = 'none';
+                    };
+                }
+            }
+        </script>
     </body>
 </html>
